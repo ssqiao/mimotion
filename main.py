@@ -190,6 +190,7 @@ class MiMotionRunner:
         url = f"https://account-cn.huami.com/v1/client/app_tokens?app_name=com.xiaomi.hm.health&dn=api-user.huami.com%2Capi-mifit.huami.com%2Capp-analytics.huami.com&login_token={login_token}"
         headers = {'User-Agent': 'MiFit/5.3.0 (iPhone; iOS 14.7.1; Scale/3.00)', 'X-Forwarded-For': self.fake_ip_addr}
         response = requests.get(url, headers=headers).json()
+        print(response)
         app_token = response['token_info']['app_token']
         # print("app_token获取成功！")
         # print(app_token)
@@ -202,8 +203,7 @@ class MiMotionRunner:
         step = str(random.randint(min_step, max_step))
         self.log_str += f"已设置为随机步数范围({min_step}~{max_step}) 随机值:{step}\n"
         login_token, userid = self.login()
-        print("qss!")
-        print(login_token)
+        
         if login_token == 0:
             return "登陆失败！", False
 
